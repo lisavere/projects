@@ -1,0 +1,88 @@
+﻿@model WebApplication15.Models.Sotr
+@ViewBag.Sotr
+
+@{
+    ViewBag.Title = "Register";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Форма регистрации</title>
+    <link href="/Content/Site.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+
+    @using (Html.BeginForm())
+    {
+
+        <div>
+            <div class="panel panel-default panel-body ">
+                <table>
+                    <tr>
+                        <td><b><i>Выберите отделение</i></b></td>
+                        <td>
+                           
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>Выберите роль пользователя</td>
+                        <td>
+                           
+                        </td>
+                    </tr>
+
+
+                    <tr>
+                        <td>ФИО</td>
+                        <td>
+                            @Html.EditorFor(Model => Model.FIO)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Должность</td>
+                        <td>
+                            @Html.EditorFor(Model => Model.Dolzn)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Введите логин</td>
+                        <td>
+                            @Html.EditorFor(Model => Model.Login)
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>Введите пароль</td>
+                        <td>
+                            @Html.EditorFor(Model => Model.psswd)
+                            @Html.ValidationMessageFor(Model => Model.psswd, "Пароль должен быть более 3-х символов!")
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>Введите адрес электронной почты</td>
+                        <td>
+                            @Html.EditorFor(Model => Model.email)
+                        </td>
+                    </tr>
+
+
+
+                </table>
+                <button type="submit" name="name" class="btn btn-outline-primary">Добавить!</button>
+            </div>
+        </div> }
+
+
+
+</body>
+</html>
+@section scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+
+}

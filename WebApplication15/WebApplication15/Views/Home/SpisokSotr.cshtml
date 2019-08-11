@@ -1,0 +1,78 @@
+﻿@using WebApplication15.Models
+@model List<Sotr>
+@{
+    ViewBag.Title = "SpisokSotr";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<nav class="navbar navbar-light bg-faded ">
+    <div class="container">
+        <div class="nav">
+
+            <ul class="nav navbar-nav nav-pills">
+
+                <li>@Html.ActionLink("Справочник отделы", "AddOtdely", "Home")</li>
+                <li>@Html.ActionLink("Добавить пользователя", "Register", "Account")</li>
+
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Список сотрудников</title>
+    <link href="/Content/Site.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+    <form method="get">
+        @Html.DropDownList("otdel", ViewBag.Otdely as SelectList)
+        <input type="submit" value="Фильтр" />
+
+    </form>
+
+    <div class="row">
+        <h4>Сотрудники</h4>
+
+        <table class=" table table-hover table-bordered">
+            <tbody>
+                <tr>
+                    <td><p><h5>ID Сотрудника</h5></p></td>
+                    <td><p><h5>Отдел</h5></p></td>
+                    <td><p><h5>ФИО</h5></p></td>
+                    <td><p><h5>Должность</h5></p></td>
+                    <td><p><h5>Логин</h5></p></td>
+
+                    <td><p><h5>Роль</h5></p></td>
+                    <td class="alert-danger"><p><h6>Удалить</h6></p></td>
+
+                </tr>
+
+                @foreach (Sotr sotrs in Model)
+                {
+
+                    <tr>
+                        <td><p>@sotrs.idSotr </p></td>
+                        <td><p>@sotrs.IdOtdely</p></td>
+                        <td><p>@sotrs.FIO</p></td>
+                        <td><p>@sotrs.Dolzn</p></td>
+                        <td><p>@sotrs.Login</p></td>
+
+                        <td><p>@sotrs.idRole</p></td>
+                        <td><p>@Html.ActionLink("Удалить", "Delete", new { id = sotrs.idSotr })</p></td>
+
+                    </tr>
+                }
+
+
+            </tbody>
+        </table>
+
+
+    </div>
+</body>
+</html>
+
+
+

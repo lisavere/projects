@@ -1,0 +1,153 @@
+﻿
+@using WebApplication15.Models
+@model List<Application>
+@{
+    ViewBag.Title = "Application";
+
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Список заявок от отдела (сортировка по отделам)</title>
+    <link href="/Content/Site.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+
+    <div class="row">
+        <h4>Журнал заявок отдела</h4>
+        <nav class="navbar navbar-light bg-faded ">
+            <div class="container">
+                <div class="nav">
+
+                    <ul class="nav navbar-nav nav-pills">
+
+                        <li>@Html.ActionLink("Перечень заявок", "Application", "Home")</li>
+                        <li>@Html.ActionLink("Создать заявку", "CreateApp", "Home")</li>
+                        <li>@Html.ActionLink("Показать историю изменений", "Change", "Home")</li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <table class=" table table-hover ">
+
+            <tbody>
+                <tr>
+                    <td><p><h6><b>Номер заявки</b></h6></p></td>
+                    <td><p><h6><b>Дата создания</b></h6></p></td>
+                    <td><p><h6><b>Цель</b></h6></p></td>
+                    <td><p><h6><b>Наименование ПО </b></h6></p></td>
+                    <td><p><h6><b>Цель создания или разработки ПО</b> </h6></p></td>
+                    <td><p><h6><b>Рабчее место специалиста</b></h6></p></td>
+                    <td><p><h6><b>Статус регистрации</b></h6></p></td>
+                    <td><p><h6><b>Приоритетность со стороны отдела</b></h6></p></td>
+                    <td><p><h6><b>Статус заявки</b></h6></p></td>
+                    <td><p><h6><b>Примечания</b></h6></p></td>
+                    <td><p><h6><b>Действия</b></h6></p></td>
+
+                </tr>
+                @foreach (Application apps in Model)
+                {
+                    if (@apps.Status == "Отменена отделом")
+                    {
+                        <tr>
+
+                            <td><p>@apps.idApp </p></td>
+                            <td><p>@apps.Date_create </p></td>
+                            <td><p>@apps.Aim</p></td>
+                            <td><p>@apps.Naimen_PO</p></td>
+                            <td><p>@apps.Aim_create_using</p></td>
+                            <td><p>@apps.Sotr_using</p></td>
+                            <td class="alert-dismissable"><p>@apps.Status</p></td>
+                            <td><p>@apps.Priority_Otdel</p></td>
+                            <td><p>@apps.Current_status</p></td>
+                            <td><p>@apps.Notes</p></td>
+                            <td>
+                                <h5></h5>
+                            </td>
+                        </tr>}
+                    else
+                    {
+                        if (@apps.Status == "зарегистрирована")
+                        {
+                            <tr>
+                                <td><p>@apps.idApp </p></td>
+                                <td><p>@apps.Date_create </p></td>
+                                <td><p>@apps.Aim</p></td>
+                                <td><p>@apps.Naimen_PO</p></td>
+                                <td><p>@apps.Aim_create_using</p></td>
+                                <td><p>@apps.Sotr_using</p></td>
+                                <td class="alert-success"><p>@apps.Status</p></td>
+                                <td><p>@apps.Priority_Otdel</p></td>
+                                <td><p>@apps.Current_status</p></td>
+                                <td><p>@apps.Notes</p></td>
+                                <td>
+                                    <br>@Html.ActionLink("Изменить приоритет ", "PriorityOtdel", new { id = apps.idApp })
+                                </td>
+                            </tr>
+                        }
+
+
+                        else {
+                            if (@apps.Status == "Отменена начальником отдела")
+                            {
+                                <tr>
+
+                                    <td><p>@apps.idApp </p></td>
+                                    <td><p>@apps.Date_create </p></td>
+                                    <td><p>@apps.Aim</p></td>
+                                    <td><p>@apps.Naimen_PO</p></td>
+                                    <td><p>@apps.Aim_create_using</p></td>
+                                    <td><p>@apps.Sotr_using</p></td>
+                                    <td class="alert-dismissable"><p>@apps.Status</p></td>
+                                    <td><p>@apps.Priority_Otdel</p></td>
+                                    <td><p>@apps.Current_status</p></td>
+                                    <td><p>@apps.Notes</p></td>
+                               
+                                   
+                                    <td>
+
+                                       
+
+
+
+
+                                    </td>
+
+
+                                </tr>
+
+                            }
+                            else {
+                            <tr>
+                                <td><p>@apps.idApp </p></td>
+                                <td><p>@apps.Date_create </p></td>
+                                <td><p>@apps.Aim</p></td>
+                                <td><p>@apps.Naimen_PO</p></td>
+                                <td><p>@apps.Aim_create_using</p></td>
+                                <td><p>@apps.Sotr_using</p></td>
+                                <td class="alert-danger"><p>@apps.Status</p></td>
+                                <td><p>@apps.Priority_Otdel</p></td>
+                                <td><p>@apps.Current_status</p></td>
+                                <td><p>@apps.Notes</p></td>
+                                <td>
+                                    @Html.ActionLink("Отменить ", "app", new { id = apps.idApp })<br>@Html.ActionLink("Изменить приоритет ", "PriorityOtdel", new { id = apps.idApp })
+                                </td>
+                            </tr>
+                            }
+
+                        }
+
+                    }
+
+                }
+            </tbody>
+        </table>
+
+
+    </div>
+</body>
+</html>

@@ -1,0 +1,86 @@
+﻿@model WebApplication15.Models.Application
+
+@{
+    ViewBag.Title = "ChangeAppSuperviser";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h3><i>Информация о заявке</i></h3>
+@Html.Partial("Current_dates_sup")
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h3><i>Изменить даты</i></h3>
+        <hr />
+        @Html.ValidationSummary(true)
+
+        <table>
+            <tr><td><b>Дата начала анализа</b></td><td><b>Дата окончания анализа</b></td><td><b>Дата начала тестирования</b></td><td><b>Дата окончания тестирования</b></td><td><b>Дата передачи в эксплуатацию</b></td></tr>
+            <tr>
+                <td>
+                    <b>
+                        @Html.EditorFor(model => model.Date_analise_beg)
+                    @Html.ValidationMessageFor(model => model.Date_analise_beg)
+                </b>
+            </td>
+            <td>
+                <b>
+                    @Html.EditorFor(model => model.Date_analise_end)
+                @Html.ValidationMessageFor(model => model.Date_analise_end)
+            </b>
+        </td>
+        <td>
+            <b>
+                @Html.EditorFor(model => model.Date_test_beg)
+            @Html.ValidationMessageFor(model => model.Date_test_beg)
+        </b>
+    </td>
+    <td>
+        <b>
+            @Html.EditorFor(model => model.Date_test_end)
+            @Html.ValidationMessageFor(model => model.Date_test_end)
+        </b>
+    </td>
+    <td>
+        <b>
+            @Html.EditorFor(model => model.Date_expluatation)
+        @Html.ValidationMessageFor(model => model.Date_expluatation)
+    </b>
+</td>
+</tr>
+</table>
+
+<br><b> Укажите ФИО разработчика</b>
+@Html.DropDownListFor(Model => Model.Developer, ViewBag.listSotr as SelectList)
+
+@Html.ValidationMessageFor(model => model.Developer)
+<p></p>
+<br><b>Примечания</b>
+
+@Html.TextAreaFor(model => model.Notes)
+
+
+
+
+
+<input type="submit" value="Сохранить" class="btn btn-default" />
+
+</div>
+}
+
+<div>
+    <p></p><br>    @Html.ActionLink("Обратно к списку", "Superviser")
+</div>
+
+@section scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/Scripts/jquery.unobtrusive-ajax.min.js")
+
+   
+
+}
+
+

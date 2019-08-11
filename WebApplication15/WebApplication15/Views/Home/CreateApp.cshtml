@@ -1,0 +1,130 @@
+﻿@model WebApplication15.Models.Application
+@{
+    ViewBag.Title = "CreateApp";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title></title>
+    <link href="/Content/Site.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+    <hr>
+    <nav class="navbar navbar-light bg-faded ">
+        <div class="container">
+            <div class="nav">
+
+                <ul class="nav navbar-nav nav-pills">
+
+                    <li>@Html.ActionLink("Список заявок от отд", "Application", "Home")</li>
+                    <li>@Html.ActionLink("Создать заявку", "CreateApp", "Home")</li>
+                    <li>@Html.ActionLink("Показать историю изменений", "Change", "Home")</li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+
+    @using (Html.BeginForm())
+    { @Html.AntiForgeryToken()
+        <fieldset>
+
+            <div class="col-sm-2"></div>
+
+            <div class="col-sm-8 panel panel-default">
+
+                <div class="panel-body ">
+
+                    <div class="panel-heading text-center text-info ">
+                        <i> <b>Выберите нужный вариант заявки: </b> </i>
+                        @Html.DropDownListFor(Model => Model.Aim, new SelectList(new string[] { "На разработку программного обеспечения", "На доработку(модификацию) программного обеспечения" }))
+                    </div>
+                    <hr>
+                    <br>    <b>  1.Введите Программный продукт (ПП)</b>
+                    <br> <h6><i>  (Заполняется в случае заявки на доработку находящегося в эксплуатации ПП)</i></h6>
+                    @Html.TextAreaFor(model => Model.Naimen_PO, 1, 200, null)
+
+                    <br /> <p></p>
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <br>  <b>   2. Цель создания /использования  </b>
+                        </div>
+                        <table class="table">
+                            <tr>
+                                <td>
+
+                                    <h6><i> <b>а.</b> Для автоматизации процессов:</i></h6>
+                                    <br> @Html.TextAreaFor(Model => Model.Aim_create_using, 1, 200, null)
+                                    @Html.ValidationMessageFor(Model => Model.Aim_create_using, "", new { @class = "text-danger" })
+                                    <br>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+
+                                    <h6> <i><b>б.</b>Рабочие места специалистов </i></h6>
+                                    <br>  @Html.DropDownListFor(Model => Model.Sotr_using, new SelectList(new string[] { "Отделения", "Управления", "Другое" }))
+
+                                </td>
+                                <td>
+                                    <br>
+                                    <h6><i> <b>в.</b> Другое:</i></h6>    @Html.TextBoxFor(model => Model.sotr_using_dr)
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+
+                                    <h6><i><b>г.</b>Периодичность использования:</i></h6>
+                                    <br> @Html.DropDownListFor(Model => Model.Time_using, new SelectList(new string[] { "Ежедневно", "Ежемесячно", "Другое" }))
+
+                                </td>
+                                <td>
+                                    <br>
+                                    <h6><i>Другое:</i></h6> @Html.TextBoxFor(Model => Model.time_using_dr)
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    <br><b> 5. Предварительная оценка уровня ЗИ включает: </b>
+                    <table class="table">
+                        <tr>
+                            <td>1</td>
+                            <td>Обработка конфиденциальной информации</td>
+                            <td>
+                                @Html.CheckBox("konf_konf", false)
+
+                            </td>
+                        </tr>
+                        <tr><td>2</td><td>Обработка персональных данных</td><td>@Html.CheckBox("konf_pers", false)</td></tr>
+                        <tr><td>3</td><td>Взаимодействие с базами типовых проектных решений</td><td>@Html.CheckBox("konf_bd", false)</td></tr>
+                    </table>
+                    <br> <b>6. Требования</b>
+                    <br> @Html.TextAreaFor(Model => Model.Requirem, 0, 200, null)
+                    @Html.ValidationMessageFor(Model => Model.Requirem, "", new { @class = "text-danger" })
+                    <p></p>
+
+                    <br><b>7. Выставите приоритет заявки</b> @Html.DropDownListFor(Model => Model.Priority_Otdel, new SelectList(new string[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12" }))
+                </div>
+
+                <div class="left text-left"><button type="submit" class="btn-default btn" value="">Добавить</button></div>
+
+
+            </div>
+
+            <div class="col-sm-2"></div>
+
+        </fieldset>
+
+
+    }
+
+</body>
+</html>
+
+@section Scripts{
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/Scripts/jquery.unobtrusive-ajax.min.js")
+
+
+}

@@ -1,0 +1,65 @@
+﻿@model WebApplication15.Models.Application
+
+
+<form method="get" name="Current_dates_sup">
+    <table class="table">
+        <tr>
+
+            <th>
+                Разработчик
+            </th>
+
+            <th>
+                Дата начала анализа
+            </th>
+            <th>
+                Дата окончания анализа
+            </th>
+            <th>
+                Дата начала тестирвоания
+            </th>
+            <th>
+                Дата окончания тестирования
+            </th>
+            <th>
+                Дата передачи в эксплуатацию
+            </th>
+            <th>
+                Примечания
+            </th>
+
+        </tr>
+
+        @foreach (var item in ViewBag.list)
+        {
+            <tr>
+
+                <td>
+                    @item.Developer
+                </td>
+
+                <td>
+                    @item.Date_analise_beg
+                </td>
+                <td>
+                    @item.Date_analise_end
+                </td>
+                <td>
+                    @item.Date_test_beg
+                </td>
+                <td>
+                    @item.Date_test_end
+                </td>
+                <td>
+                    @item.Date_expluatation
+                </td>
+                <td>
+                    @item.Notes
+                </td>
+
+
+            </tr>
+        }
+
+    </table>
+</form>

@@ -1,0 +1,49 @@
+﻿@model WebApplication15.Models.Application
+
+@{
+    ViewBag.Title = "PriorityDeveloper";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Выставить приоритет заявки</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+
+
+    <hr />
+        @Html.ValidationSummary(true)
+        <table>
+            <tbody>
+
+                <tr>
+                    <td>
+
+
+                        <b>Поставить приоритет заявки</b>
+                    </td>
+                    <td>
+
+
+                        @Html.DropDownListFor(Model => Model.Priority_Developer, new SelectList(new string[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12" }))
+
+                        @Html.ValidationMessageFor(model => model.Priority_Developer)
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <br>
+                        <p></p>
+
+                        <input type="submit" value="Сохранить" class="btn btn-default" />
+                    </td>
+                </tr>
+        </table>
+}
+
+<div>
+    <br>
+    @Html.ActionLink("Обратно к списку", "Developer")
+</div>

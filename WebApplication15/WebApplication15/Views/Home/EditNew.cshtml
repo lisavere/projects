@@ -1,0 +1,40 @@
+﻿
+@model WebApplication15.Models.Application
+
+@{
+    ViewBag.Title = "EditNew";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Назначить курирующего от Исполнителя</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>Назначение</h4>
+        <hr />
+        @Html.ValidationSummary(true)
+
+
+        <div class="form-group">
+            @Html.Label("Назначить Курирующего от Исполнителя", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(Model => Model.Superviser, ViewBag.list2 as SelectList)
+            </div>
+        </div>
+
+
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Сохранить" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Вернуться к списку", "AppRaspred")
+</div>

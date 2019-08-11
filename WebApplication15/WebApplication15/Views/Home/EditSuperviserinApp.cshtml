@@ -1,0 +1,99 @@
+﻿@using WebApplication15.Models
+
+@model List<Application>
+
+
+@{
+    ViewBag.Title = "EditSuperviserinApp";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+
+
+
+
+<div>
+    <hr>
+    <br><b>Информация о заявке</b>
+    <div class="row">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        @foreach (Application a in ViewBag.ap)
+        {
+            <table class=" table ">
+                <thead>
+                    <tr>
+                    <tr>
+                        <td><p> <b>ID заявки</b></p></td>
+                        <td scope="row"><p>@a.idApp </p></td>
+                    </tr>
+                    <tr>
+                        <td><p>Заказчик</p></td>
+                        <td scope="row"><p>@a.IdOtdely</p></td>
+                    </tr>
+                    <tr>
+                        <td><p>Дата создания</p></td>
+                        <td scope="row"><p>@a.Date_create</p></td>
+                    </tr>
+                    <tr>
+                        <td><p>Цель создания</p></td>
+                        <td scope="row"><p>@a.Aim</p></td>
+                    </tr>
+                    <tr>
+                        <td><p>Наименование ПО</p></td>
+                        <td scope="row"><p>@a.Naimen_PO</p></td>
+                    </tr>
+                    <tr>
+                        <td><p>Подробное описание цели</p></td>
+                        <td scope="row"><p>@a.Aim_create_using</p></td>
+                    </tr>
+                    <tr>
+                        <td><p>Рабочие места специалистов</p></td>
+                        <td scope="row"><p>@a.Sotr_using</p></td>
+                    </tr>
+                    <tr>
+                        <td><p>Периодичность использования</p></td>
+                        <td scope="row"><p>@a.Time_using</p></td>
+                    </tr>
+                    <tr>
+                        <td><p>Конфиденциальность</p></td>
+                        <td scope="row"><p>@a.Konfident</p></td>
+                    </tr>
+                    <tr>
+                        <td><p>Список требований</p></td>
+                        <td scope="row"><p>@a.Requirem</p></td>
+                    </tr>
+                    <tr>
+                        <td><p>Приоритет заявки со стороны отдела</p></td>
+                        <td scope="row"><p>@a.Priority_Otdel</p></td>
+                    </tr>
+
+
+            </table>
+        }
+
+    </div>
+
+
+
+
+    <div>
+        @Html.ActionLink("Обратно к списку!", "AppRaspred")
+    </div>
+</div>
+
+

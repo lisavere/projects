@@ -1,0 +1,89 @@
+﻿@using WebApplication15.Models
+@model List<Application>
+@{
+    ViewBag.Title = "Developer";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Журнал заявок</h2>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Список заявок разработчику</title>
+    <link href="/Content/Site.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+    <div class="row">
+        <h4>Заявки</h4>
+        <table class=" table table-hover table-bordered">
+            <tbody>
+                <tr>
+                    <td><p><h6><b>Номер заявки</b></h6></p></td>
+                    <td><p><h6><b>Цель</b></h6></p></td>
+                    <td><p><h6><b>Наименование ПО (если есть)</b></h6></p></td>
+
+                    <td><p><h6><b>Курирующий проект от Исполнителя</b></h6></p></td>
+                    <td><p><h6><b>Приоритет от разработчика</b></h6></p></td>
+                    <td class="alert-danger"><p><h6><b>Дата начала анализа</b></h6></p></td>
+                    <td class="alert-danger"><p><h6><b>Дата окончания анализа</b></h6></p></td>
+                    <td><p><h6><b>Дата начала тестирования</b></h6></p></td>
+                    <td><p><h6><b>Дата окончания тестирования</b></h6></p></td>
+                    <td><p><h6><b>Дата выхода в эксплуатацию</b></h6></p></td>
+                    <td><p><h6><b>Примечания</b></h6></p></td>
+                    <td><p><h6><b>Текущий статус</b></h6></p></td>
+                    <td><p><h6><b>Действия</b></h6></p></td>
+                </tr>
+
+                @foreach (Application apps in Model)
+                {
+
+                    <tr>
+
+                        <td><p><b>@apps.idApp</b> </p></td>
+
+                        <td><p>@apps.Aim</p></td>
+                        <td><p>@apps.Naimen_PO</p></td>
+
+
+
+
+                        <td><p>@apps.Superviser</p></td>
+
+                        <td><p>@apps.Priority_Developer</p></td>
+                        <td><p>@apps.Date_analise_beg</p></td>
+                        <td><p>@apps.Date_analise_end</p></td>
+                        <td><p>@apps.Date_test_beg</p></td>
+                        <td><p>@apps.Date_test_end</p></td>
+                        <td><p>@apps.Date_expluatation</p></td>
+                        <td><p>@apps.Notes</p></td>
+                        <td><p>@apps.Current_status</p></td>
+
+                        <td>
+                            <p>
+                                <h6>
+                                    @Html.ActionLink("Подробнее", "EditSuperviserinApp", new { id = apps.idApp })/
+                                @Html.ActionLink("Выставить приоритетность", "PriorityDeveloper", new { id = apps.idApp })
+                            </h6>
+                        </p>
+                    </td>
+
+                </tr>
+
+
+
+
+
+
+                }
+
+            </tbody>
+        </table>
+
+
+    </div>
+</body>
+</html>
+
+
+
+

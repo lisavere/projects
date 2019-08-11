@@ -1,0 +1,62 @@
+﻿@model WebApplication15.Models.Application
+@{
+    ViewBag.Title = "PriorityOtdel";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+
+
+
+
+<h2>Выставить приоритет заявки</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+
+
+    <hr />
+    @Html.ValidationSummary(true)
+    <table>
+        <tbody>
+            <tr>
+                <td></td>
+                <td>
+                    @Html.DisplayFor(model => model.idApp)
+                    @Html.ValidationMessageFor(model => model.idApp)
+                </td>
+
+
+            </tr>
+            <tr>
+                <td>
+
+
+                    <b>Изменить приоритет заявки</b>
+                </td>
+                <td>
+
+
+                    @Html.DropDownListFor(Model => Model.Priority_Otdel, new SelectList(new string[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12" }))
+
+                    @Html.ValidationMessageFor(model => model.Priority_Otdel)
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <br>
+                    <p></p>
+
+                    <input type="submit" value="Сохранить" class="btn btn-default" />
+                </td>
+            </tr>
+    </table>
+}
+
+<div>
+    <br>
+    @Html.ActionLink("Обратно к списку", "Application")
+</div>

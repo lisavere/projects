@@ -1,0 +1,100 @@
+﻿
+@using WebApplication15.Models
+@model List<Application>
+
+@{
+    ViewBag.Title = "AppRaspredNew";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Список поступивших заявок</h2>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>(Список поступивших заявок начальнику УИТ)</title>
+    <link href="/Content/Site.css" rel="stylesheet" type="text/css" />
+    <link href='@Url.Content("~/Content/themes/base/jquery-ui.css")' rel="stylesheet"
+          type="text/css" />
+</head>
+<body>
+    <nav class="navbar navbar-light bg-faded ">
+        <div class="container">
+            <div class="nav">
+
+                <ul class="nav navbar-nav nav-pills">
+
+                    <li>@Html.ActionLink("Полный список ", "AppRaspred", "Home")</li>
+                    <li> @Html.ActionLink("Новые заявки", "AppRaspredNew", "")</li>
+                    <li><span class="badge alert-info">@ViewBag.Application </span></li>
+
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+
+
+
+    <div id="modDialog" class="modal fade">
+        <div id="dialogContent" class="modal-dialog"></div>
+    </div>
+    <div class="row">
+
+
+        <table class=" table table-hover table-bordered">
+            <thead>
+                <tr>
+                    <td scope="row"><p><h6>Номер заявки</h6></p></td>
+                    <td><p><h6>Дата создания</h6></p></td>
+                    <td><p><h6>Цель</h6></p></td>
+                    <td><p><h6>Наименование ПО (если есть)</h6></p></td>
+                    <td><p><h6>Заказчик</h6></p></td>
+                    <td><p><h6>Конфиденциальность</h6></p></td>
+                    <td><p><h6>Статус регистрации</h6></p></td>
+                    <td><p><h6>Курирующий от Исполнителя</h6></p></td>
+                    <td><p><h6>Действия</h6></p></td>
+
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (Application apps in Model)
+                {
+
+                    <tr>
+
+                        <td><p>@apps.idApp </p></td>
+                        <td><p>@apps.Date_create </p></td>
+                        <td><p>@apps.Aim</p></td>
+                        <td><p>@apps.Naimen_PO</p></td>
+
+                        <td><p>@apps.IdOtdely</p></td>
+
+                        <td><p>@apps.Konfident</p></td>
+                        <td class="alert-danger"><p>@apps.Status</p></td>
+                        <td><p>@apps.Superviser</p></td>
+                        <td>
+
+                            @Html.ActionLink("Подробнее о заявке", "EditSuperviserinApp", new { id = apps.idApp })/
+                            @Html.ActionLink("Назначить Курирующего", "EditNew", new { id = apps.idApp })/
+                            @Html.ActionLink("Отменить ", "app1", new { id = apps.idApp })
+
+
+
+                        </td>
+
+
+                    </tr>
+
+
+                }
+            </tbody>
+        </table>
+
+
+    </div>
+
+
+
+</body>
+</html>

@@ -1,0 +1,74 @@
+﻿
+@using WebApplication15.Models
+@model List<Otdely>
+
+@{
+    ViewBag.Title = "AddOtdely";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Список отделов</h2>
+<nav class="navbar navbar-light bg-faded ">
+    <div class="container">
+        <div class="nav">
+
+            <ul class="nav navbar-nav nav-pills">
+
+                <li>@Html.ActionLink("Справочник сотрудников", "SpisokSotr", "Home")</li>
+                <li>    @Html.ActionLink("Добавить отдел", "Add_otd_new", "Home")</li>
+
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Список отделов</title>
+    <link href="/Content/Site.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+    <div class="row">
+        <h4>Отделы</h4>
+
+        <table class=" table table-hover table-bordered">
+
+            <tbody>
+                <tr>
+                    <td><p><h5>ID Отдела</h5></p></td>
+                    <td><p><h5>Наименование</h5></p></td>
+                    <td class="alert-danger"><p><h6>Удалить</h6></p></td>
+
+                </tr>
+
+                @foreach (Otdely otdel in Model)
+                {
+
+                    <tr>
+                        <td><p>@otdel.IdOtdely </p></td>
+                        <td><p>@otdel.Naimen_otd</p></td>
+                        <td>@Html.ActionLink("Удалить", "Delete_otd", new { id = otdel.IdOtdely }) </td>
+
+                    </tr>
+                }
+
+
+            </tbody>
+        </table>
+        <table>
+            <tr>
+
+                <td> </td>
+                <td>  </td>
+            </tr>
+
+        </table>
+
+    </div>
+</body>
+</html>
+
+
+
+
